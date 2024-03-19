@@ -22,7 +22,7 @@ document.getElementById('queryForm').addEventListener('submit', function (e) {
   })
     .then(response => response.json())
     .then(data => {
-      document.getElementById('response').innerHTML = `<pre>Generated Reply: ${data.message}</pre>`;
+      document.getElementById('response').innerHTML = `<pre>${data.message}</pre>`;
     })
     .catch(error => {
       console.error('Error:', error);

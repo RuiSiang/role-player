@@ -65,7 +65,7 @@ function generatePrompt(roleDetails, userQuery) {
     prompt += `Response Template: "${action["response-template"]}"\n`;
   });
 
-  prompt += `\nUser Request: "${userQuery}"\n\nGiven the user's request and the conditions for action, how would you respond based on the provided templates?`;
+  prompt += `\nUser Request: "${userQuery}"\n\nGiven the user's request and the conditions for action, how would you respond based on the provided templates? Provide your reply and also additional information based on the user's request, but strictly relevant to your role. Format your output as a professional email.`;
 
   return prompt;
 }

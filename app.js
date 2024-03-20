@@ -18,67 +18,94 @@ const openai = new OpenAI({
 });
 
 let backstories = {};
+let cases = {}
 async function loadBackstories() {
-  const data = fs.readFileSync('info.json', 'utf8');
-  backstories = JSON.parse(data);
+  const backstoriesData = fs.readFileSync('roles.json', 'utf8');
+  backstories = JSON.parse(backstoriesData);
+  const casesData = fs.readFileSync('cases.json', 'utf8');
+  cases = JSON.parse(casesData);
 }
 loadBackstories();
 
-function saveQueryRecord(role, query, response) {
+let data = { g1: [], g2: [], g3: [], g4: [] }
+
+function saveQueryRecord(role, query, response, group) {
   const record = { role, query, response, timestamp: new Date().toISOString() };
   try {
     // Ensure the file exists. Create it with an empty array if it doesn't.
-    fs.ensureFileSync('queries.json');
-    const data = fs.readJsonSync('queries.json', { throws: false }) || [];
-    data.push(record);
-    fs.writeJsonSync('queries.json', data);
+
+    data[group].push(record);
   } catch (error) {
     console.error('Error saving query record:', error);
   }
 }
 
-router.get('/roles', async (ctx) => {
+router.get(['/comms/roles', '/roles'], async (ctx) => {
   ctx.body = Object.keys(backstories);
 });
 
-router.get('/backstory/:role', async (ctx) => {
+router.get(['/comms/backstory/:role', '/backstory/:role'], async (ctx) => {
   const { role } = ctx.params;
   ctx.body = backstories[role] || 'Role not found';
 });
 
-router.get('/saved-queries', async (ctx) => {
+router.get(['/comms/saved-queries/:group', '/saved-queries/:group'], async (ctx) => {
+  if (!ctx.params.group.match(/g[1-4]/)) {
+    return;
+  }
   try {
-    const data = await fs.readJson('queries.json', { throws: false }) || [];
-    ctx.body = data.reverse()
+    ctx.body = data[ctx.params.group]
   } catch (error) {
     console.error('Error retrieving saved queries:', error);
     ctx.body = [];
   }
 });
 
-function generatePrompt(roleDetails, userQuery) {
-  let prompt = `${roleDetails.description}\n\nAvailable Actions:\n`;
-
-  roleDetails.actions.forEach((action, index) => {
-    prompt += `\n${index + 1}. Action: ${action.action}\n`;
-    prompt += `Conditions: ${action.conditions}\n`;
-    prompt += `Response Template: "${action["response-template"]}"\n`;
+function generatePrompt(roleDetails, caseBackground, userQuery) {
+  let prompt = `Role Overview:\n- Name: ${roleDetails.name}\n- Position: ${roleDetails.position}\n- Description: ${roleDetails.description}\n\nResponsibilities:\n- ${roleDetails.responsibilities}\n\n`;
+  prompt += `Case Background:\n${caseBackground.overview}\n\n`;
+  prompt += `Key Events:\n`;
+  caseBackground.keyEvents.forEach((event, index) => {
+    prompt += `- ${index + 1}. ${event}\n`;
   });
-
-  prompt += `\nUser Request: "${userQuery}"\n\nGiven the user's request and the conditions for action, how would you respond based on the provided templates? Provide your reply and also additional information based on the user's request, but strictly relevant to your role. Format your output as a professional email.`;
-
+  if (roleDetails.name === "Blockchain Analysis Specialist" || roleDetails.name === "Analyst Morgan") {
+    prompt += `\nTransaction Details:\n`;
+    caseBackground.transactionDetails.forEach((detail, index) => {
+      prompt += `- ${index + 1}. ${detail}\n`;
+    });
+  }
+  if (["Blockchain Analysis Specialist", "Team DigitalVault", "Analyst Morgan"].includes(roleDetails.name)) {
+    prompt += `\nAddress Tags:\n`;
+    caseBackground.addressTags.forEach((tag, index) => {
+      prompt += `- ${index + 1}. ${tag}\n`;
+    });
+  }
+  if (["ICCA Agent", "Analyst Morgan"].includes(roleDetails.name)) {
+    prompt += `\nSuspects:\n`;
+    caseBackground.suspects.forEach((suspect, index) => {
+      prompt += `- ${index + 1}. Name: ${suspect.name}, Role: ${suspect.role}\n`;
+    });
+  }
+  prompt += `\nAvailable Actions:\n`;
+  roleDetails.actions.forEach((action, index) => {
+    // prompt += `\n${index + 1}. Action: ${action.name}\n   - Description: ${action.description}\n   - Conditions: ${action.conditions}\n   - Evidence Required: ${action.evidenceRequired}\n   - Response Template: "${action.responseTemplate}"\n`;
+    prompt += `\n${index + 1}. Action: ${action.name}\n   - Description: ${action.description}\n   - Conditions: ${action.conditions}\n   - Evidence Required: ${action.evidenceRequired}\n`;
+  });
+  prompt += `\nUser Request: "${userQuery}"\n\nBased on the user's request and the conditions for each action, how would you respond? Include additional relevant information strictly only from your role's perspective and information you can get at the current investigative stage. Request additional info if the user does not provide sufficient info.\n\nFormat your output as a format fit for your specific role.`;
   return prompt;
 }
 
-router.post('/generate-reply', async (ctx) => {
+router.post(['/comms/generate-reply/:group', '/generate-reply/:group'], async (ctx) => {
   const { role, query } = ctx.request.body;
   const roleDetails = backstories[role];
   if (!roleDetails) {
     ctx.body = 'Role not found';
     return;
   }
-
-  const prompt = generatePrompt(roleDetails, query)
+  if (!ctx.params.group.match(/g[1-4]/)) {
+    return;
+  }
+  const prompt = generatePrompt(roleDetails, cases[ctx.params.group], query)
   // console.log(prompt)
   const response = await openai.chat.completions.create({
     model: "gpt-4",
@@ -86,8 +113,8 @@ router.post('/generate-reply', async (ctx) => {
   }).asResponse()
   if (response.ok) {
     const data = await response.json()
-    generatedResponse = data.choices[0].message.content
-    saveQueryRecord(role, query, generatedResponse);
+    generatedResponse = data.choices[0].message.content.replace('[Your Name]', '').replace('[User\'s Name]', 'User')
+    saveQueryRecord(role, query, generatedResponse, ctx.params.group);
     ctx.body = { message: generatedResponse }
 
   }

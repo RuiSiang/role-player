@@ -1,7 +1,33 @@
+let selectedGroup = 'g1'; // Default group
 document.addEventListener('DOMContentLoaded', function () {
-  fetchRoles();
-  fetchAndDisplaySavedQueries();
+  const modal = document.getElementById('groupModal');
+  const span = document.getElementsByClassName("close")[0];
+  const groupSelectButton = document.getElementById('groupSelectButton');
+
+  modal.style.display = "block";
+
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  groupSelectButton.onclick = function () {
+    selectedGroup = document.getElementById('groupSelect').value;
+    modal.style.display = "none";
+    fetchAndInitialize(selectedGroup); // Initialize your application here
+  }
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  function fetchAndInitialize() {
+    fetchRoles();
+    fetchAndDisplaySavedQueries();
+  }
 });
+
 
 document.getElementById('queryForm').addEventListener('submit', function (e) {
   e.preventDefault();
@@ -15,7 +41,7 @@ document.getElementById('queryForm').addEventListener('submit', function (e) {
   submitButton.disabled = true;
   loadingIndicator.style.display = 'block';
 
-  fetch('/generate-reply', {
+  fetch(`/comms/generate-reply/${selectedGroup}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ role, query }),
@@ -36,7 +62,7 @@ document.getElementById('queryForm').addEventListener('submit', function (e) {
 });
 
 function fetchRoles() {
-  fetch('/roles')
+  fetch('/comms/roles')
     .then(response => response.json())
     .then(data => {
       const roleSelect = document.getElementById('roleSelect');
@@ -51,9 +77,10 @@ function fetchRoles() {
 }
 
 function fetchAndDisplaySavedQueries() {
-  fetch('/saved-queries')
+  fetch(`/comms/saved-queries/${selectedGroup}`)
     .then(response => response.json())
     .then(queries => {
+      queries.reverse()
       const container = document.getElementById('savedQueries');
       container.innerHTML = '<h2>Saved Queries</h2>';
       queries.forEach((query, index) => {

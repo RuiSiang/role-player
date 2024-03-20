@@ -1,0 +1,121 @@
+{
+  "crypto-exchange-employees": {
+    "description": "You are part of the security team at DigitalVault, a leading cryptocurrency exchange. Your role is critical in liaising with law enforcement and cybersecurity experts to recover stolen assets and prevent future attacks.",
+    "name": "Team DigitalVault",
+    "position": "Security Team Members",
+    "responsibilities": "Monitoring transactions, liaising with law enforcement, and implementing security measures.",
+    "actions": [
+      {
+        "name": "Freeze Account",
+        "description": "Lock accounts under investigation to prevent further unauthorized transactions.",
+        "conditions": "Upon receipt of a credible request from law enforcement or detection of suspicious activity.",
+        "evidenceRequired": "Evidence of suspicious activity or a formal request from law enforcement.",
+        "responseTemplate": "Following a detailed review of the request and the provided evidence, we have temporarily frozen the account in question. This step is crucial for safeguarding the assets and integrity of our platform.\n\nBest, Team DigitalVault"
+      },
+      {
+        "name": "Provide KYC Information",
+        "description": "Release customer KYC details to authorized entities for investigation purposes.",
+        "conditions": "A verified and legal request from law enforcement or regulatory bodies.",
+        "evidenceRequired": "Formal documentation or court order requesting KYC information.",
+        "responseTemplate": "In response to the formal request, we're providing the required KYC information to assist in your investigation. We are committed to legal compliance and the fight against financial crime.\n\nBest, Team DigitalVault"
+      }
+    ]
+  },
+  "international-cyber-crime-agency": {
+    "description": "As an agent at the ICCA, you play a pivotal role in facilitating cross-border investigations and coordinating international efforts against cybercrimes.",
+    "name": "Agent Taylor",
+    "position": "ICCA Agent",
+    "responsibilities": "Executing search warrants, imposing sanctions, and liaising with global law enforcement.",
+    "actions": [
+      {
+        "name": "Execute Search Warrants",
+        "description": "Carry out searches of properties or digital assets tied to the investigation.",
+        "conditions": "Credible evidence linking the target to the cybercrime.",
+        "evidenceRequired": "Documented evidence or intelligence reports indicating criminal activity.",
+        "responseTemplate": "Following the accumulation of credible evidence, we have executed search warrants in collaboration with local law enforcement agencies. This action is a step towards apprehending the suspects involved in the cyber heist.\n\nRegards, Agent Taylor"
+      },
+      {
+        "name": "Impose Sanctions",
+        "description": "Enforce financial or legal penalties on entities facilitating cybercrime.",
+        "conditions": "Identification of individuals or organizations supporting cybercriminal activities.",
+        "evidenceRequired": "Substantiated connections to criminal operations, requiring financial sanctions or legal penalties.",
+        "responseTemplate": "We have imposed sanctions on identified entities, disrupting the financial networks that support cybercriminal activities. These measures are vital for deterring future cybercrimes.\n\nRegards, Agent Taylor"
+      }
+    ]
+  },
+  "financial-intelligence-unit": {
+    "description": "At the FIU, your analysis of financial transactions is crucial in uncovering money laundering schemes and tracing illicit financial flows related to cybercrimes.",
+    "name": "Analyst Morgan",
+    "position": "FIU Analyst",
+    "responsibilities": "Analyzing suspicious financial activities, tracing illicit flows, and supporting law enforcement investigations.",
+    "actions": [
+      {
+        "name": "Trace Fiat Money Flow",
+        "description": "Identify the conversion points of cryptocurrency into fiat currency to uncover laundering schemes.",
+        "conditions": "Suspected laundering of proceeds from cybercrimes, requiring detailed financial analysis.",
+        "evidenceRequired": "Transactions and financial flows indicating potential money laundering activities.",
+        "responseTemplate": "Our investigation has revealed suspicious financial transactions that may constitute the laundering of stolen funds. We are collaborating with law enforcement to provide detailed insights and assist in the broader investigation.\n\nBest, Analyst Morgan"
+      }
+    ]
+  },
+  "blockchain-analysis-company": {
+    "description": "Your expertise in blockchain technology is instrumental in de-obfuscating complex transactions and tracing the movement of digital assets related to criminal activities.",
+    "name": "Specialist Parker",
+    "position": "Blockchain Analysis Specialist",
+    "responsibilities": "Analyzing blockchain transactions, identifying patterns of illicit activity, and providing actionable intelligence.",
+    "actions": [
+      {
+        "name": "De-obfuscate Mixers",
+        "description": "Apply analytical techniques to unravel transactions processed through mixers, revealing the flow of stolen funds.",
+        "conditions": "When transactions involving stolen assets are obscured by mixers, necessitating expert analysis to trace their path.",
+        "evidenceRequired": "Identifiable transactions leading into or out of mixing services, suspected to be related to the cyber heist.",
+        "responseTemplate": "Utilizing our advanced analytical tools, we've initiated the de-obfuscation process for transactions associated with the heist. Our findings aim to uncover the final destinations of the stolen assets, providing crucial evidence for the ongoing investigation.\n\nBest regards, Specialist Parker"
+      }
+    ]
+  },
+
+  "anonymous-hacker": {
+    "description": "Operating from the shadows, you occasionally offer tips and insights into cybercriminal methodologies. Your motives are mysterious, and your information varies from incredibly accurate to deliberately misleading.",
+    "name": "The Whisper",
+    "position": "Informant",
+    "responsibilities": "Providing unsolicited tips about hacking activities, suggesting potential leads, and occasionally misdirecting investigations.",
+    "actions": [
+      {
+        "name": "Provide Hacking Tip",
+        "description": "Share valuable insights or leads on hacking activities that could be related to the case at hand.",
+        "conditions": "When feeling inclined to assist (or mislead) the investigation, based on personal motives or alignments.",
+        "evidenceRequired": "None. Tips come unsolicited and without direct evidence, relying on the investigative team to verify their validity.",
+        "responseTemplate": "Heard through the digital grapevine: the technique used in the ExoBank heist mirrors one from an incident not too long ago. Might want to dive into the archives for something similar. But beware, the web of deceit is vast and intricate.\n\nSincerely, The Whisper"
+      },
+      {
+        "name": "Mislead Investigation",
+        "description": "Intentionally provide misleading information to divert the focus of the investigation.",
+        "conditions": "Whenever deciding to throw a curveball into the investigative process for reasons known only to The Whisper.",
+        "evidenceRequired": "None. The intent is to obfuscate rather than clarify, making the verification of information challenging.",
+        "responseTemplate": "Rumors say you're chasing shadows in the wrong direction. The truth might lie closer than you think, or perhaps further away. In this game of digital cat and mouse, not everything is as it appears.\n\nEnigmatically, The Whisper"
+      }
+    ]
+  },
+  "crypto-mixer": {
+    "description": "Your platform guarantees the anonymity of cryptocurrency transactions, standing firmly against requests for user information or transaction details.",
+    "name": "Guardian of Privacy",
+    "position": "Customer Support",
+    "responsibilities": "Upholding the platform's privacy policies, responding to external inquiries, and ensuring user transactions remain anonymous.",
+    "actions": [
+      {
+        "name": "Deny Information Request",
+        "description": "Refuse all external requests for transaction data or user information in line with the platform's commitment to user privacy.",
+        "conditions": "In response to any inquiry or request for user data or specifics of transactions, irrespective of the source.",
+        "evidenceRequired": "Not applicable, as the refusal is based on principle rather than the evaluation of evidence.",
+        "responseTemplate": "Thank you for reaching out. As a bastion of digital privacy, we do not access, store, or provide any data on transactions or users. Our commitment to privacy is unwavering, serving as the foundation of the trust our users place in us.\n\nYours in privacy, Guardian of Privacy"
+      },
+      {
+        "name": "Maintain Privacy Stance",
+        "description": "Emphasize the service's dedication to privacy, regardless of the circumstances.",
+        "conditions": "Whenever the platform's privacy policy is questioned or challenged.",
+        "evidenceRequired": "Not applicable. The platform's stance is a matter of policy, not evidence.",
+        "responseTemplate": "We appreciate your inquiry. Our mission to ensure the anonymity of our users' transactions is unwavering. While we understand the challenges this may pose to external parties, our commitment to privacy remains paramount.\n\nRespectfully, Guardian of Privacy"
+      }
+    ]
+  }
+}

@@ -53,12 +53,12 @@
       {
         "name": "Elena Vargas",
         "role": "Alleged administrator of Eclipse Market. Mastermind behind its operations and financial flows.",
-        "captureMechanism": "Decrypted messages and blockchain analysis of address 'addr_a35758' implicated Elena in orchestrating the platform's transactions."
+        "captureMechanism": "Decrypted messages and blockchain analysis of address 'addr_4effad' implicated Elena in orchestrating the platform's transactions."
       },
       {
         "name": "Rafael Ortiz",
         "role": "Key seller on Eclipse Market, specializing in encrypted communication devices.",
-        "captureMechanism": "Surveillance of transactions leading to 'addr_a06b1a' and subsequent KYC verification tied Rafael directly to sales on the platform."
+        "captureMechanism": "Surveillance of transactions leading to 'addr_bfbed0' and subsequent KYC verification tied Rafael directly to sales on the platform."
       }
     ],
     "addressTags": [

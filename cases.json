@@ -46,7 +46,7 @@
     "transactionDetails": [
       "TXID: tx_2710e9c0 - Deposit to Eclipse Market from an anonymous source.",
       "TXID: tx_38ef56ec - Splitting funds through multiple addresses to obfuscate origins.",
-      "TXID: tx_65a0b80f - Laundered funds moved through 'ShadowMixer', complicating traceability.",
+      "TXID: tx_65a0b80f - Laundered funds moved through 'Guardian of Privacy', complicating traceability.",
       "TXID: tx_8512454e - Attempted withdrawal of aggregated funds by market operators."
     ],
     "suspects": [
@@ -64,14 +64,14 @@
     "addressTags": [
       "addr_ff06b7 - Initial deposit address linked to anonymous sources.",
       "addr_4355a9, addr_83bbfc, addr_4effad - Intermediate addresses used for fund splitting.",
-      "addr_db7c37 - 'ShadowMixer' address, first laundering attempt.",
+      "addr_db7c37 - 'Guardian of Privacy' address, first laundering attempt.",
       "addr_bfbed0, addr_7ef299, addr_50a0a2 - Withdrawal addresses linked to market operators."
     ],
     "roleContributions": {
       "cryptoExchangeEmployees": "Identified and reported suspicious activities related to 'addr_50a0a2', leading to a breakthrough in tracing the withdrawal paths.",
       "internationalCyberCrimeAgency": "Facilitated the arrest of Elena Vargas by tracing encrypted communications back to 'addr_a35758'.",
       "financialIntelligenceUnit": "Unraveled the complex web of transactions associated with 'addr_db7c37', linking it to known laundering techniques used by Eclipse Market.",
-      "blockchainAnalysisCompany": "Deployed sophisticated tracing algorithms to de-obfuscate the transactions through 'ShadowMixer', pinpointing the critical withdrawal addresses."
+      "blockchainAnalysisCompany": "Deployed sophisticated tracing algorithms to de-obfuscate the transactions through 'Guardian of Privacy', pinpointing the critical withdrawal addresses."
     }
   },
   "g3": {
